@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:componentes_app/src/routes/routes.dart';
 import 'package:componentes_app/src/paginas/alerta_pag.dart';
 import 'src/paginas/home_temp.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,6 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', ''), // English, no country code
+        const Locale('es', 'MX'),
+        const Locale.fromSubtags(languageCode: 'zh'), // Chinese *See Advanced Locales below*
+        // ... other locales the app supports
+      ],
       title: 'Componentes APP',
       theme: ThemeData(
         primarySwatch: Colors.teal,
