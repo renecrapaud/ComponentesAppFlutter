@@ -9,6 +9,8 @@ class _InputPageState extends State<InputPage> {
   String _nombre = '';
   String _email = '';
   String _fecha = '';
+  String _opcSeleccionada = "Primera opción";
+  List<String> _listaOpcs = ['Primera opción','Segunda Opción', 'Tercera Opción'];
   TextEditingController _controlEntradaFecha = new TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,8 @@ class _InputPageState extends State<InputPage> {
           _agrEntContrasena(),
           Divider(),
           _agregaEntradaFecha(context),
+          Divider(),
+          _agregaListaSelec(),
           Divider(),
           _copiarNombre(),
         ],
@@ -133,6 +137,29 @@ class _InputPageState extends State<InputPage> {
         _controlEntradaFecha.text = _fecha;
       });
     }
+  }
+
+  List<DropdownMenuItem<String>> obtOpcsDropDwn(){
+    List<DropdownMenuItem<String>> lista = new List();
+    _listaOpcs.forEach((opcion) {
+      lista.add(DropdownMenuItem(
+        child: Text(opcion),
+        value: opcion,
+      ));
+    });
+    return lista;
+  }
+
+  Widget _agregaListaSelec() {
+    return DropdownButton(
+      value: _opcSeleccionada,
+      items: obtOpcsDropDwn(),
+      onChanged: (opc){
+        setState(() {
+          _opcSeleccionada = opc;
+        });
+      },
+    );
   }
 
 }
