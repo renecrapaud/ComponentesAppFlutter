@@ -7,6 +7,7 @@ class PaginaSlide extends StatefulWidget {
 
 class _PaginaSlideState extends State<PaginaSlide> {
   double _valorSlider;
+  bool _bloqueaCambioTam = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +19,8 @@ class _PaginaSlideState extends State<PaginaSlide> {
         child: Column(
           children: <Widget>[
             _agregaSlider(),
+            _agregaCheckBox(),
+            _agregaSwitch(),
             Expanded(
                 child: _agregarImagen()
             ),
@@ -32,7 +35,7 @@ class _PaginaSlideState extends State<PaginaSlide> {
       activeColor: Colors.indigoAccent,
       label: 'Tamaño de la imagen',
       divisions: 20,
-      onChanged: (valor){
+      onChanged: (_bloqueaCambioTam) ? null : (valor){
         setState(() {
           _valorSlider = valor;
         });
@@ -48,6 +51,38 @@ class _PaginaSlideState extends State<PaginaSlide> {
       image: NetworkImage('https://cdn.pixabay.com/photo/2021/01/18/18/55/sheep-5929158__340.jpg'),
       width: _valorSlider,
       fit: BoxFit.contain,
+    );
+  }
+
+  Widget _agregaCheckBox() {
+    return CheckboxListTile(
+      title: Text('Bloquear Slider'),
+      value: _bloqueaCambioTam,
+      onChanged: (valor){
+        setState(() {
+          _bloqueaCambioTam = valor;
+        });
+      },
+    );
+    /* return Checkbox(
+      value: _bloqueaCambioTam,
+      onChanged: (valor){
+        setState(() {
+          _bloqueaCambioTam = valor;
+        });
+      },
+    ); */
+  }
+
+  _agregaSwitch() {
+    return SwitchListTile(
+      title: Text('Bloquear Slider'),
+      value: _bloqueaCambioTam,
+      onChanged: (valor){
+        setState(() {
+          _bloqueaCambioTam = valor;
+        });
+      },
     );
   }
 }
