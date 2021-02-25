@@ -6,7 +6,7 @@ class PaginaSlide extends StatefulWidget {
 }
 
 class _PaginaSlideState extends State<PaginaSlide> {
-  double _valorSlider;
+  double _valorSlider = 100;
   bool _bloqueaCambioTam = false;
   @override
   Widget build(BuildContext context) {
@@ -34,15 +34,15 @@ class _PaginaSlideState extends State<PaginaSlide> {
     return Slider(
       activeColor: Colors.indigoAccent,
       label: 'Tamaño de la imagen',
+      value: _valorSlider,
       divisions: 20,
       onChanged: (_bloqueaCambioTam) ? null : (valor){
         setState(() {
           _valorSlider = valor;
         });
       },
-      value: _valorSlider,
       min: 10.0,
-      max: 400.0,
+      max: 400.0
     );
   }
 
@@ -74,7 +74,7 @@ class _PaginaSlideState extends State<PaginaSlide> {
     ); */
   }
 
-  _agregaSwitch() {
+  Widget _agregaSwitch() {
     return SwitchListTile(
       title: Text('Bloquear Slider'),
       value: _bloqueaCambioTam,
