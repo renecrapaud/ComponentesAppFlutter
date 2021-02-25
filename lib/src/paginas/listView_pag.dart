@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 
-class paginadeLista extends StatefulWidget {
+class PaginadeLista extends StatefulWidget {
   @override
-  _paginadeListaState createState() => _paginadeListaState();
+  _PaginadeListaState createState() => _PaginadeListaState();
 }
 
-class _paginadeListaState extends State<paginadeLista> {
-  List<int> _listaNumeros = [1,2,3,4,5];
+class _PaginadeListaState extends State<PaginadeLista> {
+  ScrollController _scrollController = new ScrollController();
+  List<int> _listaNumeros = [];
+  int _ultImgCargada = 0;
+  @override
+  void initState() {
+    super.initState();
+    _agrega10Imgs();
+    _scrollController.addListener(() {
+      if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
+        _agrega10Imgs();
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +31,7 @@ class _paginadeListaState extends State<paginadeLista> {
 
   Widget _agregaLista(){
     return ListView.builder(
+      controller: _scrollController,
       itemCount: _listaNumeros.length,
       itemBuilder: (BuildContext context, int index){
         final imagen = _listaNumeros[index];
@@ -28,5 +41,15 @@ class _paginadeListaState extends State<paginadeLista> {
         );
       },
     );
+  }
+
+  void _agrega10Imgs(){
+    for(var i = 1; i < 10; i++){
+      _ultImgCargada++;
+      _listaNumeros.add(_ultImgCargada);
+      setState(() {
+
+      });
+    }
   }
 }

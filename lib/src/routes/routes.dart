@@ -17,6 +17,6 @@ Map<String, WidgetBuilder> getApplicationRoutes(){
     'animatedContainer' : (BuildContext context) => AnimatedContainerPage(),
     'inputs' : (BuildContext context) => InputPage(),
     'slider' : (BuildContext context) => PaginaSlide(),
-    'list' : (BuildContext context) => paginadeLista()
+    'list' : (BuildContext context) => PaginadeLista()
   };
 }

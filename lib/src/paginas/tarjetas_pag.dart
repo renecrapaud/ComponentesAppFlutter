@@ -11,15 +11,15 @@ class CardPage extends StatelessWidget{
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         children: <Widget>[
-          _TarjetaTipo1(),
+          _tarjetaTipo1(),
           SizedBox(height: 30.0,),
-          _TarjetaTipo2(),
+          _tarjetaTipo2(),
         ],
       ),
     );
   }
 
-  Widget _TarjetaTipo1() {
+  Widget _tarjetaTipo1() {
     return Card(
       elevation: 5.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
@@ -48,7 +48,7 @@ class CardPage extends StatelessWidget{
     );
   }
 
-  Widget _TarjetaTipo2() {
+  Widget _tarjetaTipo2() {
     final carr = Container(
       child: Column(
         children: <Widget>[
