@@ -10,7 +10,7 @@ class HomePageTemp extends StatelessWidget{
     );
   }
 
-  List<Widget> _agregarElems(){
+  /* List<Widget> _agregarElems(){
     List<Widget> misOpciones = new List<Widget>();
     for(var opt in opciones){
       final temWidget = ListTile(
@@ -20,7 +20,7 @@ class HomePageTemp extends StatelessWidget{
                  ..add(Divider());
     }
     return misOpciones;
-  }
+  } */
 
   List<Widget> _agregaElemsAlt(){
     return opciones.map((e) {
