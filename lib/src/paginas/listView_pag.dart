@@ -44,17 +44,30 @@ class _PaginadeListaState extends State<PaginadeLista> {
     );
   }
 
+  Future<Null> recargaPagina1() async{
+    final duracion = new Duration(seconds: 2);
+    new Timer(duracion, (){
+      _listaNumeros.clear();
+      _ultImgCargada++;
+      _agrega10Imgs();
+    });
+    return Future.delayed(duracion);
+  }
+
   Widget _agregaLista(){
-    return ListView.builder(
-      controller: _scrollController,
-      itemCount: _listaNumeros.length,
-      itemBuilder: (BuildContext context, int index){
-        final imagen = _listaNumeros[index];
-        return FadeInImage(
-          image: NetworkImage('https://picsum.photos/500/300/?image=$imagen'),
-          placeholder: AssetImage('assets/jar-loading.gif'),
-        );
-      },
+    return RefreshIndicator(
+      onRefresh: recargaPagina1,
+      child: ListView.builder(
+        controller: _scrollController,
+        itemCount: _listaNumeros.length,
+        itemBuilder: (BuildContext context, int index){
+          final imagen = _listaNumeros[index];
+          return FadeInImage(
+            image: NetworkImage('https://picsum.photos/500/300/?image=$imagen'),
+            placeholder: AssetImage('assets/jar-loading.gif'),
+          );
+        },
+      ),
     );
   }
 
